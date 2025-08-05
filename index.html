@@ -4,12 +4,748 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style.css">
     <title>Dwello</title>
+    <style>
+        * {
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #2B1B12;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #FEF7F2;
+            overflow-x: hidden;
+        }
+        
+        header {
+            padding: 10px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        header ul {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            list-style: none;
+        }
+        
+        header ul li a {
+            color: #2B1B12;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        #hend {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        #hend img {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+        
+        .signup {
+            display: inline-block;
+            background-color: #2B1B12;
+            color: #FFFFFF;
+            font-size: 18px;
+            width: 140px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .signup:hover {
+            background-color: #3B2A22;
+        }
+        
+        section {
+            padding: 10px 50px;
+        }
+        
+        #main {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            align-items: center;
+        }
+        
+        #main img {
+            width: 60%;
+            max-width: 800px;
+        }
+        
+        #main .text {
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #main .text h1 {
+            font-size: 70px;
+            color: #2B1B12;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        #main .text p {
+            font-weight: 600;
+            font-size: 24px;
+            color: #4F3527;
+            margin-bottom: 30px;
+        }
+        
+        #main .text .signup {
+            width: 200px;
+            height: 60px;
+            font-size: 24px;
+        }
+        #btn-container button span{
+            color: #695346;
+        }
+
+        #btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            width: 80%;
+            padding: 20px 40px;
+            border-radius: 10px;
+            background: #DDC7BB;
+            position: relative;
+            margin: 0 auto;
+            bottom: 100px;
+            gap: 15px; 
+        }
+
+        #btn-container button:not(.signup) {
+            flex: 1;
+            height: 50px;
+            font-size: 16px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #FBF5F1;
+            color: #695346;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #btn-container button.signup {
+            height: 50px;
+            padding: 0 20px;
+            font-size: 16px;
+            white-space: nowrap;
+            flex: none;
+            width: auto;
+        }
+
+
+        #dream-home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 100px 0;
+        }
+        
+        #dream-home img {
+            width: 50%;
+            max-width: 600px;
+        }
+        
+        #dream-home .text {
+            max-width: 600px;
+        }
+        
+        #dream-home .text h2 {
+            font-size: 45px;
+            color: #4F3527;
+            margin-bottom: 20px;
+        }
+        
+        #dream-home .text p {
+            font-weight: 600;
+            font-size: 18px;
+            color: #4F3527;
+            margin-bottom: 40px;
+        }
+        
+        #dream-home .text div {
+            display: flex;
+            gap: 40px;
+        }
+        
+        #dream-home .text div span h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        #dream-home .text div span strong {
+            font-size: 14px;
+        }
+        
+        #why-choose {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 100px 0;
+            text-align: center;
+        }
+        
+        #why-choose h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        
+        #why-choose strong {
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+        
+        #why-choose div {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        #why-choose div article {
+            background: #DDC7BB;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 280px;
+            min-height: 270px;
+        }
+        
+        #why-choose div article img {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        
+        #why-choose div article h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        #residence {
+            margin: 100px 0;
+        }
+        
+        #residence h1 {
+            font-size: 50px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        #residence-wrap {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .residence-container {
+            background: #DDC7BB;
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 390px;
+            width: 100%;
+        }
+        
+        .residence-container img {
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+        
+        .residence-container main {
+            padding: 20px;
+        }
+        
+        .residence-container .text div {
+            display: flex;
+            align-items: center;
+        }
+        
+        .residence-container .text img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        #residence .res-wrap {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        #residence .res-wrap div {
+            display: flex;
+            align-items: center;
+        }
+        
+        #residence strong {
+            font-size: 20px;
+            margin-top: 20px;
+            display: block;
+            text-align: right;
+        }
+        
+        #residence button {
+            margin-top: 20px;
+        }
+        
+        #opinion {
+            text-align: center;
+        }
+        
+        #opinion h1 {
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+        
+        #opinion-wrap {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .opinion-container {
+            background: #DDC7BB;
+            border-radius: 10px;
+            max-width: 390px;
+            overflow: hidden;
+        }
+        
+        .opinion-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .opinions {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .opinion {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        
+        .opinion img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        
+        .opinion strong {
+            display: block;
+            font-size: 18px;
+        }
+        
+        .opinion span {
+            font-size: 14px;
+            color: #4F3527;
+        }
+        
+        .rating {
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+        }
+        
+        .rating img {
+            width: 15px;
+            height: 15px;
+        }
+        
+        .opinions p {
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .arrows {
+            margin-top: 40px;
+        }
+        
+        .arrows img {
+            background: #2B1B12;
+            border-radius: 50%;
+            padding: 10px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+                
+        #faq {
+            text-align: center;
+            padding: 80px 20px;
+            margin: 100px 0;
+        }
+
+        #faq h1 {
+            font-size: 35px;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .faq-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .faq-options b {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .email-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .input-container {
+            background: #DDC7BB;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .input-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        #email {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+            color: #2B1B12;
+        }
+
+        #email::placeholder {
+            color: #543E32;
+            opacity: 1;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .email-form {
+                flex-direction: column;
+                width: 100%;
+            }
+            #faq h1 {
+                font-size: 36px;
+            }
+            .input-container {
+                width: 100%;
+            }
+            
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            #faq h1 {
+                font-size: 28px;
+            }
+        }
+                
+        footer {
+            background: #DDC7BB;
+            padding: 80px 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        footer .intro {
+            max-width: 250px;
+        }
+        
+        footer .intro img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        footer .intro strong {
+            line-height: 1.5;
+        }
+        
+        footer .more-info {
+            min-width: 150px;
+        }
+        
+        footer .more-info strong {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 900;
+            display: block;
+        }
+
+        
+        footer .more-info a {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #2B1B12;
+        }
+        
+        .social-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .social-wrap span{
+            position: relative;
+            bottom: 5px;
+            margin-left: 10px;
+        }
+        
+        
+        .social-wrap img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            #main .text h1 {
+                font-size: 60px;
+            }
+            
+            #btn-container {
+                width: 90%;
+                bottom: -80px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            header {
+                padding: 15px 30px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            header ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #FEF7F2;
+                padding: 20px;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                z-index: 100;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            }
+            
+            header ul.active {
+                display: grid;
+            }
+            
+            #main {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #main .text {
+                align-items: center;
+                margin-bottom: 40px;
+            }
+            
+            #main img {
+                width: 100%;
+                max-width: 600px;
+            }
+            
+            #dream-home {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #dream-home img {
+                width: 100%;
+                max-width: 500px;
+                margin-bottom: 40px;
+            }
+            
+            #dream-home .text div {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            #why-choose div article {
+                min-height: auto;
+            }
+            
+            footer {
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 10px 30px;
+            }
+            
+            #main .text h1 {
+                font-size: 48px;
+            }
+            
+            #main .text p {
+                font-size: 20px;
+            }
+            
+            #btn-container {
+                position: static;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                margin-top: 40px;
+            }
+            
+            #btn-container button:not(.signup) {
+                width: 100%;
+            }
+            
+            #dream-home .text h2 {
+                font-size: 36px;
+            }
+            
+            #residence h1,
+            #opinion h1,
+            #why-choose h1 {
+                font-size: 36px;
+            }
+            
+            .opinion-container {
+                max-width: 100%;
+            }
+            
+            .input-wrap {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            #main .text h1 {
+                font-size: 36px;
+            }
+            
+            #main .text p {
+                font-size: 18px;
+            }
+            
+            #main .text .signup {
+                width: 100%;
+                height: auto;
+            }
+            
+            #dream-home .text h2 {
+                font-size: 30px;
+            }
+            
+            #dream-home .text div span h2 {
+                font-size: 32px;
+            }
+            
+            #residence h1,
+            #opinion h1,
+            #why-choose h1,
+            #faq h1 {
+                font-size: 30px;
+            }
+            
+            footer {
+                padding: 60px 30px;
+                flex-direction: column;
+            }
+            
+            footer .intro {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
+        <button class="mobile-menu-toggle">
+            <img src="./assets/icons/menu.svg" alt="Menu"/>
+        </button>
         <a href="#">
             <img src="./assets/icons/logo.svg" alt="Logo"/>
         </a>
@@ -32,18 +768,24 @@
                 properties meticulously tailored to your unique dream home vision
             </p>
             <button type="button" class="signup">Sign Up</button>
-            
         </div>
         <img src="./assets/images/hero image 1.png" alt="House Image"/>
-
     </section>
 
     <main id="btn-container">
-        <button type="button" class="">Location</button>
-        <button type="button">Type</button>
-        <button type="button">Price Range</button>
-        <button type="button" class="signup">Sign Up</button>
-        
+        <button type="button">
+            <span>Location</span>
+            <img src="./assets/icons/location.svg" alt="Location"/>
+        </button>
+        <button type="button">
+            <span>Type</span>
+            <img src="./assets/icons/home.svg" alt="Home"/>
+        </button>
+        <button type="button">
+            <span>Price Range</span>
+            <img src="./assets/icons/currency.svg" alt="Currency"/>
+        </button>
+        <button type="button" class="signup">Signup</button>
     </main>
 
     <section id="dream-home">
@@ -67,7 +809,6 @@
                     <strong>Trusted Agents</strong>
                 </span>
             </div>
-
         </div>
     </section>
 
@@ -79,23 +820,23 @@
         <div>
             <article>
                 <img src="./assets/icons/Vector-1.svg" alt="Location"/>
-                    <h3>Expert Guidance</h3>
-                    <span>Benefit from our team's seasoned expertise for a smooth buying experience</span>
+                <h3>Expert Guidance</h3>
+                <span>Benefit from our team's seasoned expertise for a smooth buying experience</span>
             </article>
             <article>
                 <img src="./assets/icons/service.svg" alt="Service"/>
-                    <h3>Personalized Service</h3>
-                    <span>Our services adapt to your unique needs, making your journey stress-free</span>
+                <h3>Personalized Service</h3>
+                <span>Our services adapt to your unique needs, making your journey stress-free</span>
             </article>
             <article>
                 <img src="./assets/icons/document.svg" alt="Document"/>
-                    <h3>Transparent Process</h3>
-                    <span>Stay informed with our clear and honest approach to buying your home</span>
+                <h3>Transparent Process</h3>
+                <span>Stay informed with our clear and honest approach to buying your home</span>
             </article>
             <article>
                 <img src="./assets/icons/handshake.svg" alt="Handshake"/>
-                    <h3>Exceptional Support</h3>
-                    <span>Providing peace of mind with our responsive and attentive customer service</span>
+                <h3>Exceptional Support</h3>
+                <span>Providing peace of mind with our responsive and attentive customer service</span>
             </article>
         </div>
     </section>
@@ -147,7 +888,6 @@
                 </main>
             </div>
 
-
             <div class="residence-container">
                 <img src="./assets/images/Residences.3.jpg" alt="Residential House"/>
                 <main class="text">
@@ -169,7 +909,6 @@
                     </div>
                 </main>
             </div>
-            
         </div>
     </section>
 
@@ -181,8 +920,10 @@
                 <div class="opinions">
                     <div class="opinion">
                         <img src="./assets/images/person1.png" alt="Sarah Nguyen">
-                        <strong>Sarah Nguyen</strong>
-                        <span>San Francisco</span>
+                        <div>
+                            <strong>Sarah Nguyen</strong>
+                            <span>San Francisco</span>
+                        </div>
                         <div class="rating">
                             <img src="./assets/icons/Star 1.svg" alt="Star"/>
                             <b>5.0</b>
@@ -200,19 +941,17 @@
             <div class="opinion-container">
                 <img src="./assets/images/Review-bg.2.jpg" alt="Image" class="opinion-image"/>
                 <div class="opinions">
-                   
                     <div class="opinion">
                         <img src="./assets/images/person2.png" alt="Michael Rodriguez">
-                        <strong>Michael Rodriguez</strong><br/>
-                        <span>San Diego</span>
+                        <div>
+                            <strong>Michael Rodriguez</strong>
+                            <span>San Diego</span>
+                        </div>
                         <div class="rating">
                             <img src="./assets/icons/Star 1.svg" alt="Star"/>
                             <b>4.5</b>
                         </div>
                     </div>
-
-
-
                     <p class="content">
                         I had a fantastic experience working with Dwello.
                         Their expertise and personalized service exceeded my
@@ -225,24 +964,22 @@
             <div class="opinion-container">
                 <img src="./assets/images/Review-bg.3.jpg" alt="Image" class="opinion-image"/>
                 <div class="opinions">
-                    
-
                     <div class="opinion">
                         <img src="./assets/images/person3.png" alt="Emily Johnson">
-                        <strong>Emily Johnson</strong><br/>
-                        <span>Los Angeles</span>
+                        <div>
+                            <strong>Emily Johnson</strong>
+                            <span>Los Angeles</span>
+                        </div>
                         <div class="rating">
                             <img src="./assets/icons/Star 1.svg" alt="Star"/>
                             <b>5.0</b>
                         </div>
                     </div>
-
-                    
                     <p class="content">
                         Dwello made my dream of owning a home a reality!
                         Their team provided exceptional support and guided me
                         through every step of the process. 
-                            I couldn't be happier with my new home!
+                        I couldn't be happier with my new home!
                     </p>
                 </div>
             </div>
@@ -252,28 +989,25 @@
             <img src="./assets/icons/right-arrow.svg" alt="Right Arrow">
         </div>
     </section>
+
     <section id="faq">
-        <h1>Do you have any questions?
-            Get help from us
-        </h1>
-        <div>
-            <img src="./assets/icons/verified-account.svg" alt="Verification-badge"/>
-            <b>Chat live with our support team</b>
-            <img src="./assets/icons/verified-account.svg" alt="Verification-badge"/>
-            <b>Browse our FAQ</b>
+        <h1>Do you have any questions?<br>Get help from us</h1>
+        <div class="faq-options">
+            <b><img src="./assets/icons/verified-account.svg" alt="Verification-badge"/>Chat live with our support team</b>
+            <b><img src="./assets/icons/verified-account.svg" alt="Verification-badge"/>Browse our FAQ</b>
         </div>
-        <form action="">
-            <div class="input-wrap">
+        <form class="email-form">
+            <div class="input-container">
                 <img src="./assets/icons/email.svg" alt="Email"/>
-                <input type="email" name="email" id="email" placeholder="Enter Your Email Address"/>
+                <input type="email" name="email" id="email" placeholder="Enter your email address..."/>
             </div>
-            <input type="submit" value="Submit" class="signup"/>
+            <button type="submit" class="signup submit-btn">Submit</button>
         </form>
     </section>
 
     <footer>
         <div class="intro">
-            <img src="./assets/images/logo-footer.png" alt="Logo"/>
+            <img src="./assets/images/logo-footer.png" alt="Logo"/><br>
             <strong>
                 Bringing you closer to your dream home, one click at a time.
             </strong>
@@ -281,50 +1015,57 @@
 
         <div class="more-info">
             <strong>About</strong>
-            <div>
-                <a href="#">Our story</a>
-                <a href="#">Careers</a>
-                <a href="#">Our team</a>
-                <a href="#">Resources</a>
-            </div>
+            <a href="#">Our story</a>
+            <a href="#">Careers</a>
+            <a href="#">Our team</a>
+            <a href="#">Resources</a>
         </div>
         <div class="more-info">
             <strong>Support</strong>
-            <div>
-                <a href="#">FAQ</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Help Center</a>
-                <a href="#">Terms of service</a>
-            </div>
+            <a href="#">FAQ</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Help Center</a>
+            <a href="#">Terms of service</a>
         </div>
         <div class="more-info">
             <strong>Find Us</strong>
-            <div>
-                <a href="#">Events</a>
-                <a href="#">Locations</a>
-                <a href="#">News Letter</a>
-                <pre> </pre>
-            </div>
+            <a href="#">Events</a>
+            <a href="#">Locations</a>
+            <a href="#">News Letter</a>
         </div>
         <div class="more-info">
             <strong>Our Social</strong>
-            <div>
-                <a href="#" class="social-wrap">
-                    <img src="./assets/icons/instgram.svg" alt="Instagram"/>
-                    <span>Instagram</span>
-                </a>
-                <a href="#" class="social-wrap">
-                    <img src="./assets/icons/Vector.svg" alt="Facebook"/>
-                    <span>Facebook</span>
-                </a>
-                <a href="#" class="social-wrap">
-                    <img src="./assets/icons/x-icon.svg" alt="Twitter(X)"/>
-                    <span>Twitter (X)</span>
-                </a>
-                <pre> </pre>
-            </div>
+            <a href="#" class="social-wrap">
+                <img src="./assets/icons/instgram.svg" alt="Instagram"/>
+                <span>Instagram</span>
+            </a>
+            <a href="#" class="social-wrap">
+                <img src="./assets/icons/Vector.svg" alt="Facebook"/>
+                <span>Facebook</span>
+            </a>
+            <a href="#" class="social-wrap">
+                <img src="./assets/icons/x-icon.svg" alt="Twitter(X)"/>
+                <span>Twitter (X)</span>
+            </a>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('header ul');
+            
+            toggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            const navLinks = document.querySelectorAll('header ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
